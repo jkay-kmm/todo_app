@@ -4,9 +4,14 @@ import 'package:todo_app/ultils.enums/onboarding_page_position.dart';
 class OnboardingChildPage extends StatelessWidget {
   final OnboardingPagePosition onboardingPagePosition;
   final VoidCallback nextOnPressed;
+  final VoidCallback backOnPressed;
+  final VoidCallback skipOnPressed;
+
   const OnboardingChildPage({super.key,
     required this.onboardingPagePosition,
-    required this.nextOnPressed
+    required this.nextOnPressed,
+    required this.backOnPressed,
+    required this.skipOnPressed,
   });
 
   @override
@@ -36,7 +41,9 @@ class OnboardingChildPage extends StatelessWidget {
       margin: const EdgeInsets.only(top: 14),
       alignment: AlignmentDirectional.centerStart,
       child: TextButton(
-        onPressed: () {},
+        onPressed: () {
+          skipOnPressed();
+        },
         child: Text(
           "SKIP",
           style: TextStyle(
@@ -137,7 +144,9 @@ class OnboardingChildPage extends StatelessWidget {
       child: Row(
         children: [
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              backOnPressed();
+            },
             child: Text(
               "BACK",
               style: TextStyle(
