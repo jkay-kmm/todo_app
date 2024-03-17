@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app/ui/login/login_page.dart';
 import 'package:todo_app/ui/onboarding/onboarding_page_view.dart';
 import 'package:todo_app/ui/splash/splash.dart';
 import 'package:todo_app/ui/welcome/welcome_page.dart';
@@ -18,8 +19,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
+        fontFamily: "Lato"
       ),
-      home:  const OnboardingPageView(),
+      home:  const LoginPage(),
     );
    }
  }

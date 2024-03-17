@@ -48,7 +48,7 @@ class OnboardingChildPage extends StatelessWidget {
           "SKIP",
           style: TextStyle(
               fontSize: 16,
-              fontFamily: "Lato",
+              // fontFamily: "Lato",
               color: Colors.white.withOpacity(0.44)),
         ),
       ),
@@ -113,7 +113,7 @@ class OnboardingChildPage extends StatelessWidget {
             onboardingPagePosition.onboardingPageTitle(),
             style: TextStyle(
               color: Colors.white.withOpacity(0.87),
-              fontFamily: "Lato",
+              // fontFamily: "Lato",
               fontSize: 32,
               fontWeight: FontWeight.bold,
             ),
