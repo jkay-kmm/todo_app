@@ -1,6 +1,5 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-
 class RegisterPage extends StatelessWidget {
   const RegisterPage({super.key});
 
@@ -11,14 +10,13 @@ class RegisterPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         leading: IconButton(
-          onPressed: () {
+          onPressed: (){
             Navigator.pop(context);
           },
           icon: const Icon(
-            Icons.arrow_back_ios_new_rounded,
+            Icons.arrow_back_ios_new_outlined,
             size: 18,
-            color: Colors.white,
-          ),
+            color: Colors.white,),
         ),
       ),
       body: SafeArea(
@@ -27,54 +25,49 @@ class RegisterPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
-            // can trai
             children: [
               _buildPageTitle(),
-              _buildFormLogin(),
+              const SizedBox(height: 53),
+              _buildFormRegister(),
+              _buildOrSplitDivider(),
+              _buildSocialRegister(),
+              _buildHaveAccount(context),
             ],
           ),
         ),
       ),
     );
   }
-
-  Widget _buildPageTitle() {
-    return Container(
+  Widget _buildPageTitle(){
+    return  Container(
       margin: const EdgeInsets.symmetric(horizontal: 20).copyWith(top: 40),
       child: Text(
-        "LOGIN",
+        "Register",
         style: TextStyle(
           color: Colors.white.withOpacity(0.87),
-          // fontFamily: "Lato",
           fontSize: 32,
           fontWeight: FontWeight.bold,
+          fontFamily: "Lato",
         ),
         textAlign: TextAlign.center,
       ),
     );
   }
+  Widget _buildFormRegister(){
+    return Form(
+      child: Container(
+        margin:const EdgeInsets.symmetric(horizontal: 24),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildUsernameField(),
+            // const SizedBox(height: 25,),
+            _buildPasswordField(),
+            _buildConfirmPasswordField(),
+            _buildLoginButton(),
 
-  Widget _buildFormLogin() {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 24),
-      child: Form(
-        child: SafeArea(
-          top: false,
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildUsernameField(),
-                const SizedBox(height: 53),
-                _buildPasswordField(),
-                _buildLoginButton(),
-                _buildOrSplitDivider(),
-                _buildSocialLogin(),
-                _buildHaveNotAccount(),
-              ],
-            ),
-          ),
+          ],
         ),
       ),
     );
@@ -85,123 +78,185 @@ class RegisterPage extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          "Username",
-          style: TextStyle(
-            color: Colors.white.withOpacity(0.87),
-            fontFamily: "Lato",
-            fontSize: 16,
-          ),
-        ),
-        Container(
-          margin: const EdgeInsets.only(top: 8),
-          child: TextFormField(
-              decoration: InputDecoration(
-                hintText: "Enter your Username",
-                hintStyle: const TextStyle(
-                  color: Color(0xFF535353),
-                  fontFamily: "Lato",
+        Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Username",
+              style: TextStyle(
+                color: Colors.white.withOpacity(0.87),
+                fontSize: 16,
+                fontFamily: "Lato",
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(top: 8),
+              child: TextFormField(
+                decoration: InputDecoration(
+                  hintText: "Enter your Username",
+                  hintStyle: const TextStyle(
+                    color: Color(0xFF535353),
+                    fontSize: 16,
+                    fontFamily: "Lato",
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                  fillColor: const Color(0xFF1D1D1D),
+                  filled: true,
+                ),
+                style: const TextStyle(
+                  color: Colors.white,
                   fontSize: 16,
+                  fontFamily: "Lato",
                 ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(4),
-                ),
-                fillColor: const Color(0xFF1D1D1D),
-                filled: true,
               ),
-              style: const TextStyle(
-                color: Colors.white,
-                fontFamily: "Lato",
-                fontSize: 16,
-              )),
-        )
-      ],
-    );
-  }
-
-  Widget _buildPasswordField() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          "Password",
-          style: TextStyle(
-            color: Colors.white.withOpacity(0.87),
-            // fontFamily: "Lato",
-            fontSize: 16,
-          ),
+            )
+          ],
         ),
-        Container(
-          margin: const EdgeInsets.only(top: 8),
-          child: TextFormField(
-            decoration: InputDecoration(
-              hintText: "*********",
-              hintStyle: const TextStyle(
-                color: Color(0xFF535353),
-                fontFamily: "Lato",
-                fontSize: 16,
-              ),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(4),
-              ),
-              fillColor: const Color(0xFF1D1D1D),
-              filled: true,
-            ),
-            style: const TextStyle(
-              color: Colors.white,
-              fontFamily: "Lato",
-              fontSize: 16,
-            ),
-            obscureText: true, // an password
-          ),
-        )
       ],
     );
   }
-
-  Widget _buildLoginButton() {
+  Widget _buildPasswordField() {
     return Container(
-      width: double.infinity, // khong gioi han ve width
+      margin:const EdgeInsets.only(top: 25),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Password",
+                style: TextStyle(
+                  color: Colors.white.withOpacity(0.87),
+                  fontSize: 16,
+                  fontFamily: "Lato",
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 8),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    hintText: "* * * * * * * * * * *",
+                    hintStyle: const TextStyle(
+                      color: Color(0xFF535353),
+                      fontSize: 16,
+                      fontFamily: "Lato",
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    fillColor: const Color(0xFF1D1D1D),
+                    filled: true,
+                  ),
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontFamily: "Lato",
+                  ),
+                  obscureText: true,
+                ),
+              )
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+  Widget _buildConfirmPasswordField() {
+    return Container(
+      margin:const EdgeInsets.only(top: 25),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Confirm Password",
+                style: TextStyle(
+                  color: Colors.white.withOpacity(0.87),
+                  fontSize: 16,
+                  fontFamily: "Lato",
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 8),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    hintText: "* * * * * * * * * * *",
+                    hintStyle: const TextStyle(
+                      color: Color(0xFF535353),
+                      fontSize: 16,
+                      fontFamily: "Lato",
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    fillColor: const Color(0xFF1D1D1D),
+                    filled: true,
+                  ),
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontFamily: "Lato",
+                  ),
+                  obscureText: true,
+                ),
+              )
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+  Widget _buildLoginButton(){
+    return Container(
+      width: double.infinity,
       height: 48,
       margin: const EdgeInsets.only(top: 70),
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: null,
         style: ElevatedButton.styleFrom(
             backgroundColor: const Color(0xFF8875FF),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(4),
             ),
-            disabledBackgroundColor: const Color(0xFF8687E7).withOpacity(0.5)),
-        child: const Text(
-          "Login",
-          style: TextStyle(
-            fontSize: 16,
-            fontFamily: "Lato",
-            color: Colors.white,
+            disabledBackgroundColor: const Color(0xFF8687E7).withOpacity(0.5)
+        ),
+        child:  const  Text(
+          "Register",
+          style:  TextStyle(
+              fontSize: 16,
+              fontFamily: "Lato",
+              color: Colors.white
           ),
         ),
       ),
     );
   }
-
   Widget _buildOrSplitDivider() {
     return Container(
-      margin: const EdgeInsets.only(top: 29, bottom: 35),
-      padding: const EdgeInsets.symmetric(horizontal: 8),
+      margin: const EdgeInsets.only(top: 45 , bottom: 40),
+      padding:const EdgeInsets.symmetric(horizontal: 24),
       child: Row(
         children: [
           Expanded(
-            // day cho den khi het man hinh => hai day cho ra giuwa
             child: Container(
               height: 1,
               width: double.infinity,
               color: const Color(0xFF979797),
             ),
           ),
-          const Text(
+          const  Text(
             "or",
-            style: TextStyle(
+            style:  TextStyle(
               fontSize: 16,
               fontFamily: "Lato",
               color: Color(0xFF979797),
@@ -219,7 +274,7 @@ class RegisterPage extends StatelessWidget {
     );
   }
 
-  Widget _buildSocialLogin() {
+  Widget _buildSocialRegister(){
     return Column(
       children: [
         _buildSocialGoogleLogin(),
@@ -227,38 +282,40 @@ class RegisterPage extends StatelessWidget {
       ],
     );
   }
-
-  Widget _buildSocialGoogleLogin() {
+  Widget _buildSocialGoogleLogin(){
     return Container(
-      width: double.infinity, // khong gioi han ve width
+      width: double.infinity,
       height: 48,
-      padding: const EdgeInsets.symmetric(horizontal: 8),
-      margin: const EdgeInsets.symmetric(vertical: 20),
+      margin: const EdgeInsets.symmetric(vertical: 28),
+      padding:const EdgeInsets.symmetric(horizontal: 20),
       child: ElevatedButton(
-        onPressed: () {
-          // TODO
+        onPressed: (){
+          //TODO : xu ly sau
         },
         style: OutlinedButton.styleFrom(
             backgroundColor: Colors.transparent,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-            side: const BorderSide(
-                width: 1, color: Color(0xFF8875FF)) // Border 4 goc
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(4),
             ),
-        child: Row(
+            side: const BorderSide(
+              width: 1,
+              color: Color(0xFF8875FF) ,
+            )
+        ),
+        child:  Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset(
-              "assets/images/social_google_logo.png",
+            Image.asset("assets/images/social_google_logo.png",
+              // TODO chưa khắc phục được ảnh để tạm
               width: 24,
               height: 24,
-              fit: BoxFit.fill,
+              fit: BoxFit.contain,
             ),
             Container(
               margin: const EdgeInsets.only(left: 10),
               child: const Text(
-                "Login with Google",
+                "Register with Google",
                 style: TextStyle(
                   fontSize: 16,
                   fontFamily: "Lato",
@@ -271,32 +328,35 @@ class RegisterPage extends StatelessWidget {
       ),
     );
   }
-
-  Widget _buildSocialAppleLogin() {
+  Widget _buildSocialAppleLogin(){
     return Container(
-      width: double.infinity, // khong gioi han ve width
+      width: double.infinity,
       height: 48,
-      padding: const EdgeInsets.symmetric(horizontal: 8),
+      padding:const EdgeInsets.symmetric(horizontal: 24),
+      // margin: const EdgeInsets.only(bottom: 20),
       child: ElevatedButton(
-        onPressed: () {
-          // TODO
+        onPressed: (){
+          //TODO : xu ly sau
         },
         style: OutlinedButton.styleFrom(
             backgroundColor: Colors.transparent,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-            side: const BorderSide(
-                width: 1, color: Color(0xFF8875FF)) // Border 4 goc
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(4),
             ),
-        child: Row(
+            side: const BorderSide(
+              width: 1,
+              color: Color(0xFF8875FF) ,
+            )
+        ),
+        child:  Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset(
-              "assets/images/social_apple_logo.png",
+            Image.asset("assets/images/social_apple_logo.png",
+              // TODO chưa khắc phục được ảnh để tạm
               width: 24,
               height: 24,
-              fit: BoxFit.fill,
+              fit: BoxFit.contain,
             ),
             Container(
               margin: const EdgeInsets.only(left: 10),
@@ -314,32 +374,32 @@ class RegisterPage extends StatelessWidget {
       ),
     );
   }
-  Widget _buildHaveNotAccount(){
+  Widget _buildHaveAccount(BuildContext context){
     return Container(
-      margin: const EdgeInsets.only(top: 46, bottom: 20),
+      margin:const EdgeInsets.only(top: 46, bottom: 20),
       alignment: Alignment.center,
       child: RichText(
-          text: TextSpan(
-            text: "Don’t have an account? ",
-            style: const TextStyle(
+        text: TextSpan(text: "Already have an account? ",
+          style:const TextStyle(
               fontSize: 12,
               fontFamily: "Lato",
-              color: Color(0xFF979797),
-            ),
-            children: [
-              TextSpan(
-                text:"Register",
-               style:  TextStyle(
+              color: Color(0xFF979797)
+          ),
+          children: [
+            TextSpan(text: "Login",
+                style: TextStyle(
                   fontSize: 12,
                   fontFamily: "Lato",
                   color: Colors.white.withOpacity(0.87),
                 ),
                 recognizer: TapGestureRecognizer()..onTap = (){
-                  print("Di den man hinh register");
-                },
-              ),
-            ],
-          )),
+                  Navigator.pop(context);
+                }
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
+
